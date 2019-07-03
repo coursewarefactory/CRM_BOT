@@ -34,7 +34,7 @@ def crm_main(message):
         report[user_id] = logistic.accepted(user_id, name_of_receiver[user_id], city_of_receiver[user_id])# функция генерирует трек номер.
         # записывает в базу: имя получателя, трек номер, город отправления(определяет по ID отправителя), дату-время
         # возвращает репорт (запись добавлена, сообщите другому курьеру трек ! . нажмите /start чтобы продолжить)
-        
+        # если не удалось записать данные возвращает соответствующее сообщение
         bot.send_message(message.chat.id, report[user_id])
         path[user_id] = 'command'
         
@@ -87,13 +87,11 @@ def handle_docs_photo(message):
         with open(src, 'wb') as new_file:
             new_file.write(downloaded_file)
         link_photo[user_id] = src   # создаем ссылку на файл      
-        report[user_id] = logistic.delivered(user_id, track_number[user_id], link_photo[user_id]) # вызываем функцию, которая записывает в базу дату и время доставки и ссылку на фото 
-        bot.send_message(message.chat.id, report[user_id]) #  выводим сообщение о том что фото добавлено
-        print(path)
-   
+        report[user_id] = logistic.delivered(user_id, track_number[user_id], link_photo[user_id]) # вызываем функцию, которая записывает в базу дату и время доставки и ссылку на фото
+                                                                                                  # если не удалось записать данные возвращает соответствующее сообщение                               
+        bot.send_message(message.chat.id, report[user_id]) #  выводим сообщение о том что фото добавлено           
     except Exception as e:
         bot.reply_to(message,e )
-        print('вызван except')
         
 if __name__ == '__main__':
      bot.polling(none_stop=True)
