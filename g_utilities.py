@@ -62,6 +62,7 @@ def get_cell_range(start, finish):
        Значения пустых ячеек в массив не записываются.
        Если соединение с сервером google не установлено возвращает соответствующее сообщение
        """
+    flag = True
     CREDENTIALS_FILE = 'elite-coral-241813-08f497bfe238.json'  
     credentials = ServiceAccountCredentials.from_json_keyfile_name(CREDENTIALS_FILE, ['https://www.googleapis.com/auth/spreadsheets', 'https://www.googleapis.com/auth/drive'])
     httpAuth = credentials.authorize(httplib2.Http())
@@ -113,3 +114,5 @@ def write_cell_value(coordinate, value):
 
             ]
         }).execute()
+    report =''
+    return flag, report
