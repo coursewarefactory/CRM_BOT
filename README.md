@@ -31,7 +31,7 @@ https://docs.google.com/spreadsheets/d/1zBhtvPaivNAHfi5oVOlZK0AVR5WFOC8WVwTKpqZh
 
 ### Установка приложения 
 ```bash
-git clone https://github.com/aquaracer/VK_authorization_DJANGO.git vk_auth_app
+git clone https://github.com/aquaracer/CRM_BOT.git vk_auth_app
 cd vk_auth_app
 python3 -m venv env
 ./env/bin/activate
@@ -39,6 +39,6 @@ pip install -r requirements.txt
 ```
 ### Запуск сервиса
 ```bash
-manage.py runserver 
+python3 crm_bot.py
 ``` 
 
